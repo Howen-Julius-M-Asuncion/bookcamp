@@ -1,8 +1,8 @@
-### CampBook
+## CampBook
 
 A WebDev2 preliminary requirement project using PHP and mySQL database.
 
-## TO DO
+### TO DO
 
 - [ ] Login Authentication
     - [x] Route All Users to Home Page
@@ -18,6 +18,6 @@ A WebDev2 preliminary requirement project using PHP and mySQL database.
 - [ ] User Profile Page
 - [ ] Publish through Hostinger
 
-## DONE
+### DONE
 
 - [x] User Login Page
