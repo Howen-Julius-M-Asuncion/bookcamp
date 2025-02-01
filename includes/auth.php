@@ -18,6 +18,7 @@
         if (password_verify($password, $user['password'])) {
             // If the password is hashed, proceed normally
             $_SESSION['authenticated'] = "TRUE";
+            $_SESSION['userID'] = $user['id'];
         } else {
             // If the password is plain-text, manually check it
             if ($user['password'] === $password) {
@@ -32,6 +33,7 @@
 
                 // Log the user in
                 $_SESSION['authenticated'] = "TRUE";
+                $_SESSION['userID'] = $user['id'];
             } else {
                 // Password is incorrect
                 $_SESSION["error_message"] = "Invalid Password!";
