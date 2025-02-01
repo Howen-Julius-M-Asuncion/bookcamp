@@ -8,11 +8,11 @@ A WebDev2 preliminary requirement project using PHP and mySQL database.
     - [x] Route All Users to Home Page
     - [x] Dashboard Access for Admins
     - [ ] Prevent Invalid Bypass to Files and Folders
-        - [ ] Root Folder
-        - [ ] Public
+        - [x] Root Folder
+        - [x] Public
         - [ ] User .htaccess
-- [ ] Dashboard Page for Admin
-    - [ ] Prevent Access for Admins
+- [x] Dashboard Page for Admin
+    - [ ] Prevent Access for Non-Admins
 - [ ] CRUD Operations for Admin Dashboard
 - [ ] User Home Page
 - [ ] User Profile Page
