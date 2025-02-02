@@ -11,14 +11,12 @@
 
         // Hash the password before inserting it into the database
         $password = '123';
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);  // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // SQL query to insert user data
         $query = "INSERT INTO users (email, password, first_name, last_name, status, accountType_id, created_at, updated_at) VALUES ('$email', '$hashed_password', '$first_name', '$last_name', 'Inactive', '$account_type', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
 
         if (mysqli_query($conn, $query)) {
-            // echo "<script> alert('Data Inserted Successfully'); </script>";
-            header('Location: ../user_mngmt.php?success=true');
+            header('Location: ../user_mngmt.php?add_success=true');
             exit(); 
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conn);

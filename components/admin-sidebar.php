@@ -4,17 +4,7 @@
 ?>
 <style>
     <?php
-        if ($_SESSION['currentPage'] == "Home"){ 
-            echo '
-            .navigation .li-home {
-                background-color: var(--gray);
-            }
-            
-            .navigation .li-home a {
-                color: var(--blue);
-            }
-            ';
-        }else if ($_SESSION['currentPage'] == "Dashboard"){ 
+        if ($_SESSION['currentPage'] == "Dashboard"){ 
             echo '
             .navigation .li-dash {
                 background-color: var(--gray);
@@ -24,43 +14,54 @@
                 color: var(--blue);
             }
             ';
+        }else if ($_SESSION['currentPage'] == "Books"){ 
+            echo '
+            .navigation .li-first {
+                background-color: var(--gray);
+            }
+            
+            .navigation .li-first a {
+                color: var(--blue);
+            }
+            ';
+        }else if ($_SESSION['currentPage'] == "Records"){ 
+            echo '
+            .navigation .li-second {
+                background-color: var(--gray);
+            }
+            
+            .navigation .li-second a {
+                color: var(--blue);
+            }
+            ';
         }else if ($_SESSION['currentPage'] == "Users"){ 
             echo '
-            .navigation .li-users {
+            .navigation .li-third {
                 background-color: var(--gray);
             }
             
-            .navigation .li-users a {
+            .navigation .li-third a {
                 color: var(--blue);
             }
             ';
-        }else if ($_SESSION['currentPage'] == "Sections"){ 
+        }else if ($_SESSION['currentPage'] == "Genre"){ 
             echo '
-            .navigation .li-sections {
+            .navigation .li-fourth {
                 background-color: var(--gray);
             }
             
-            .navigation .li-sections a {
+            .navigation .li-fourth a {
                 color: var(--blue);
             }
             ';
-        }else if ($_SESSION['currentPage'] == "Courses"){ 
+        }
+        else if ($_SESSION['currentPage'] == "Authors"){ 
             echo '
-            .navigation .li-courses {
+            .navigation .li-fifth {
                 background-color: var(--gray);
             }
             
-            .navigation .li-courses a {
-                color: var(--blue);
-            }
-            ';
-        }else if ($_SESSION['currentPage'] == "Departments"){ 
-            echo '
-            .navigation .li-departments {
-                background-color: var(--gray);
-            }
-            
-            .navigation .li-departments a {
+            .navigation .li-fifth a {
                 color: var(--blue);
             }
             ';
@@ -86,14 +87,6 @@
             </a>
         </li>
         <hr>
-        <!-- <li class="li-home">
-            <a href="<?php echo BASE_URL?>/pages/home.php">
-                <span class="icon">
-                    <i class="fa-solid fa-house-user"></i>
-                </span>
-                <span class="title">Home</span>
-            </a>
-        </li> -->
         <li class="li-dash">
             <a href="<?php echo BASE_URL?>/pages/admin/dashboard.php">
                 <span class="icon">
@@ -103,23 +96,31 @@
             </a>
         </li>
         <hr>
-        <li class="li-sections">
-            <a href="<?php echo BASE_URL?>/pages/admin/book_inv.php">
+        <li class="li-first">
+            <a href="<?php echo BASE_URL?>/pages/admin/book_mngmt.php">
                 <span class="icon">
                     <i class="fa-solid fa-book-open"></i>
                 </span>
-                <span class="title">Book Inventory</span>
+                <span class="title">Book Management</span>
             </a>
         </li>
-        <li class="li-departments">
-            <a href="<?php echo BASE_URL?>/pages/admin/borrow.php">
+        <!-- <li class="li-fifth">
+            <a href="<?php // echo BASE_URL?>/pages/admin/author_mngmt.php">
+                <span class="icon">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </span>
+                <span class="title">Author Management</span>
+            </a>
+        </li> -->
+        <!-- <li class="li-second">
+            <a href="<?php // echo BASE_URL?>/pages/admin/borrow.php">
                 <span class="icon">
                     <i class="fa-regular fa-clipboard"></i>
                 </span>
                 <span class="title">Borrow Records</span>
             </a>
-        </li>
-        <li class="li-users">
+        </li> -->
+        <li class="li-third">
             <a href="<?php echo BASE_URL?>/pages/admin/user_mngmt.php">
                 <span class="icon">
                     <i class="fa-solid fa-users-gear"></i>
@@ -127,14 +128,14 @@
                 <span class="title">User Management</span>
             </a>
         </li>
-        <li class="li-courses">
-            <a href="<?php echo BASE_URL?>/pages/admin/genre_mngmt.php">
+        <!-- <li class="li-fourth">
+            <a href="<?php // echo BASE_URL?>/pages/admin/genre_mngmt.php">
                 <span class="icon">
                     <i class="fa-solid fa-masks-theater"></i>
                 </span>
                 <span class="title">Genre Management</span>
             </a>
-        </li>
+        </li> -->
         <hr>
         <li>
             <a href="<?php echo BASE_URL?>/includes/logout.php">

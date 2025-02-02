@@ -16,8 +16,8 @@ var displayTable = new DataTable('#display-table', {
             targets: 0
         },
         {
-            target: 1,
-            visible: false,
+            target: 0,
+            visible: true,
             searchable: false
         }
     ],
@@ -30,15 +30,44 @@ var displayTable = new DataTable('#display-table', {
 
 displayTable.on('select', function(e, dt, type, indexes) {
     if (type === 'row') {
-        // Row selected
+        // Row Selected
         var selectedRowData = displayTable.row(indexes).data();
-        console.log("Selected row data:", selectedRowData); // Log the entire row data
+        console.log("Selected row data:", selectedRowData);
         
-        // Extract room ID from the selected row data
-        var entryID = selectedRowData[1]; // Assuming room ID is in the second column (index 1)
+        // Extract entry ID from the selected row data
+        var entryID = selectedRowData[1];
         console.log("Selected ID:", entryID);
+
+        // // Populate fields in modal edit
+        // document.getElementById('edit_id').value = entryID;
+        // document.getElementById('edit_email').value = selectedRowData[3];
+        // document.getElementById('edit_first').value = selectedRowData[4].split(' ')[0];
+        // document.getElementById('edit_last').value = selectedRowData[4].split(' ')[1];
+
+        // var accountType = selectedRowData[5];
+        // var accountTypeMap = {
+        //     "Admin": 1,
+        //     "Staff": 2,
+        //     "Professor": 3,
+        //     "Student": 4
+        // };
+
+        // // console.log("Account Type:", accountTypeMap[accountType]);
+
+        // // Populate fields in modal delete confirmation
+        // document.getElementById('delete_id').value = entryID;
+        // document.getElementById('delete_email').value = selectedRowData[3];
+        // document.getElementById('delete_first').value = selectedRowData[4].split(' ')[0];
+        // document.getElementById('delete_last').value = selectedRowData[4].split(' ')[1];
+
+
+        // if (accountTypeMap[accountType]) {
+        //     $('#edit_type').val(accountTypeMap[accountType]).trigger('change');
+        //     $('#delete_type').val(accountTypeMap[accountType]).trigger('change');
+        // }
     }
 });
+
 
 // Action buttons
 function toggleButtonState(buttonId) {
@@ -63,6 +92,7 @@ const editEntryButton = document.getElementById('editEntryBtn');
 const editEntryModal = new bootstrap.Modal(document.getElementById('editEntryModal'));
 
 const deleteEntryButton = document.getElementById('deleteEntryBtn');
+const deleteEntryModal = new bootstrap.Modal(document.getElementById('deleteEntryModal'));
 
 addEntryButton.addEventListener('click', function(event) {
     event.preventDefault();
@@ -72,4 +102,9 @@ addEntryButton.addEventListener('click', function(event) {
 editEntryButton.addEventListener('click', function(event) {
     event.preventDefault();
     editEntryModal.show();
+});
+
+deleteEntryButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    deleteEntryModal.show();
 });

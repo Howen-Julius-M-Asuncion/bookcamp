@@ -19,7 +19,7 @@
     }
 
     // To display on sidebars
-    $_SESSION['currentPage'] = "Users";
+    $_SESSION['currentPage'] = "Books";
     $userID = $_SESSION['userID'];
 
     // SQL to fetch user information
@@ -110,22 +110,17 @@
                             <tr>
                                 <th></th>
                                 <th>ID</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Full Name</th>
-                                <!-- <th>Password</th> -->
-                                <th>Type</th>
-                                <th>Created</th>
-                                <th>Updated</th>
-                                <!-- <th>Pending</th> -->
+                                <th>Title</th>
+                                <th>ISBN</th>
+                                <th>Genre</th>
+                                <th>Author</th>
+                                <th>Created At</th>
+                                <th>Updated At</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $query = "SELECT users.*, accountTypes.type AS account_type 
-                                FROM users 
-                                JOIN accountTypes ON users.accountType_id = accountTypes.id
-                                WHERE users.status != 'Archived'";
+                                $query = "SELECT * FROM books";
 
                                 
                                 $result = $conn->query($query);
@@ -134,55 +129,12 @@
                             <tr>
                                 <td></td>
                                 <td class="overflow-auto"><?=$list['id']?></td>
-                                <td class="overflow-auto">
-                                <?php
-                                    if (!isset($list['username'])){
-                                        echo 'No Username';
-                                    }else{
-                                        echo $list['username'];
-                                    }
-                                ?>
-                                </td>
-                                <td class="overflow-auto"><?=$list['email']?></td>
-                                <td class="overflow-auto"><?=$list['first_name'].' '.$list['last_name']?></td>
-                                <td 
-                                <?php 
-                                    // Styalized Span
-                                    // if ($list['account_type'] == 'Admin'){
-                                    //     echo 'class="d-flex justify-content-center bg-danger text-light rounded-pill p-1 px-2 w-100"';
-                                    // }else if ($list['account_type'] == 'Staff'){
-                                    //     echo 'class="d-flex justify-content-center bg-primary text-light rounded-pill p-1 px-2 w-100"';
-                                    // }else if ($list['account_type'] == 'Professor'){
-                                    //     echo 'class="d-flex justify-content-center bg-secondary text-light rounded-pill p-1 px-2 w-100"';
-                                    // }else if ($list['account_type'] == 'Student'){
-                                    //     echo 'class="d-flex justify-content-center bg-success text-light rounded-pill p-1 px-2 w-100"';
-                                    // }
-                                    
-                                    // TD BACKGROUND ONLY 
-
-                                    if ($list['account_type'] == 'Admin'){
-                                        echo 'class="text-center bg-danger text-light"';
-                                    }else if ($list['account_type'] == 'Staff'){
-                                        echo 'class="text-center bg-primary text-light"';
-                                    }else if ($list['account_type'] == 'Professor'){
-                                        echo 'class="text-center bg-secondary text-light"';
-                                    }else if ($list['account_type'] == 'Student'){
-                                        echo 'class="text-center bg-success text-light"';
-                                    }
-                                ?>
-                                >
-                                    <?=$list['account_type']?>
-                                </span></td>
-                                <!-- <td class="hidden"><?//=$list['password']?></td> -->
+                                <td class="overflow-auto"><?=$list['title']?></td>
+                                <td class="overflow-auto"><?=$list['isbn']?></td>
+                                <td class="overflow-auto"><?=$list['genre']?></td>
+                                <td class="overflow-auto"><?=$list['author_name']?></td>
                                 <td class="overflow-auto"><?=$list['created_at']?></td>
-                                <td>                                <?php
-                                    if (!isset($list['updated_at'])){
-                                        echo $list['created_at'];
-                                    }else{
-                                        echo $list['updated_at'];
-                                    }
-                                ?>
-                                <!-- <td class="overflow-auto"></td> -->
+                                <td class="overflow-auto"><?=$list['updated_at']?></td>
                             </tr>
                             <?php
 								}
@@ -194,13 +146,13 @@
         </div>
         <!-- Modals for action class -->
         <!-- Add Entry Modal -->
-        <form method="post" action="./queries/user_add.php" id="addEntryForm">
+        <form method="post" action="./queries/book_add.php" id="addEntryForm">
             <div class="modal fade" id="addEntryModal" tabindex="-1" aria-labelledby="addEntryModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addEntryModalLabel">Add User</h5>
+                            <h5 class="modal-title" id="addEntryModalLabel">Add Book</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <!-- Modal Body -->
@@ -211,37 +163,30 @@
                                     <input type="text" class="form-control" id="enter_user" name="enter_user" value="">
                                 </div> -->
                                 <div class="col">
-                                    <label for="enter_email" class="form-label">Email</label>
-                                    <input type="text" class="form-control" id="enter_email" name="enter_email" value="">
+                                    <label for="enter_title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="enter_title" name="enter_title" value="">
+                                </div>
+                            </div>
+                            <div class="row mb-3 decimal">
+                                <div class="col">
+                                    <label for="enter_ISBN" class="form-label">ISBN</label>
+                                    <input type="text" class="form-control" id="enter_ISBN" name="enter_ISBN" value="">
+                                </div>
+                                <div class="col">
+                                    <label for="enter_genre" class="form-label">Genre</label>
+                                    <input type="text" class="form-control" id="enter_genre" name="enter_genre" value="">
                                 </div>
                             </div>
                             <div class="row mb-3 name">
                                 <div class="col">
-                                    <label for="enter_first" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="enter_first" name="enter_first" value="">
-                                </div>
-                                <div class="col">
-                                    <label for="enter_last" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="enter_last" name="enter_last" value="">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label for="enter_type" class="form-label">Account Type</label>
-                                    <select name="enter_type" class="form-select" id="enter_type">
-                                        <option selected></option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Staff</option>
-                                        <option value="1">Professor</option>
-                                        <option value="2">Student</option>
-                                    </select>
+                                    <label for="enter_name" class="form-label">Author Name</label>
+                                    <input type="text" class="form-control" id="enter_name" name="enter_name" value="">
                                 </div>
                             </div>
                         </div>
                         <!-- Modal Footer -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-ban"></i>&nbsp;Cancel</button>
-                            <!-- <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-circle-check"></i>&nbsp;Apply and Add New</button> -->
                             <button type="submit" class="btn btn-success btn-sm" data-bs-dismiss="modal" name="addEntry"><i class="fa-regular fa-circle-check"></i>&nbsp;Confirm</button>
                         </div>
                     </div>
@@ -249,94 +194,83 @@
             </div>
         </form>
         <!-- Edit Entry Modal -->
-        <form method="post" action="./queries/user_edit.php" id="editEntryForm">
+        <form method="post" action="./queries/book_edit.php" id="editEntryForm">
             <div class="modal fade" id="editEntryModal" tabindex="-1" aria-labelledby="editEntryModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editEntryModalLabel">Edit User</h5>
+                            <h5 class="modal-title" id="editEntryModalLabel">Edit Book</h5>
                             <!-- Hidden input -->
                             <input type="hidden" class="ms-5" id="edit_id" name="edit_id" value="">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <!-- Modal Body -->
                         <div class="modal-body">
-                            <div class="row mb-3">
-                                <!-- <div class="col">
-                                    <label for="edit_user" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="edit_user" name="edit_user" value="">
-                                </div> -->
+                            <div class="row mb-3 location">
                                 <div class="col">
-                                    <label for="edit_email" class="form-label">Email</label>
-                                    <input type="text" class="form-control" id="edit_email" name="edit_email" value="">
+                                    <label for="edit_title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="edit_title" name="edit_title" value="">
+                                </div>
+                            </div>
+                            <div class="row mb-3 decimal">
+                                <div class="col">
+                                    <label for="edit_ISBN" class="form-label">ISBN</label>
+                                    <input type="text" class="form-control" id="edit_ISBN" name="edit_ISBN" value="">
+                                </div>
+                                <div class="col">
+                                    <label for="edit_genre" class="form-label">Genre</label>
+                                    <input type="text" class="form-control" id="edit_genre" name="edit_genre" value="">
                                 </div>
                             </div>
                             <div class="row mb-3 name">
                                 <div class="col">
-                                    <label for="edit_first" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="edit_first" name="edit_first" value="">
-                                </div>
-                                <div class="col">
-                                    <label for="edit_last" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="edit_last" name="edit_last" value="">
-                                </div>
-                            </div>
-                            <!-- <div class="row mb-3">
-                                <div class="col">
-                                    <label for="edit_pass" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="edit_pass" name="edit_pass" value="">
-                                </div>
-                            </div> -->
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label for="edit_type" class="form-label">Account Type</label>
-                                    <select name="edit_type" class="form-select" id="edit_type">
-                                        <option selected></option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">Staff</option>
-                                        <option value="1">Professor</option>
-                                        <option value="2">Student</option>
-                                    </select>
+                                    <label for="edit_name" class="form-label">Author Name</label>
+                                    <input type="text" class="form-control" id="edit_name" name="edit_name" value="">
                                 </div>
                             </div>
                         </div>
                         <!-- Modal Footer -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-ban"></i>&nbsp;Cancel</button>
-                            <button type="submit" class="btn btn-success btn-sm" id="confirmEditBtn" data-bs-dismiss="modal" name="editEntry" disabled><i class="fa-regular fa-circle-check"></i>&nbsp;Confirm</button>
-
+                            <button type="submit" class="btn btn-success btn-sm" data-bs-dismiss="modal" name="editEntry"><i class="fa-regular fa-circle-check"></i>&nbsp;Confirm</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
         <!-- Delete Entry Modal -->
-        <form method="post" action="./queries/user_delete.php" id="deleteEntryForm">
+        <form method="post" action="./queries/book_delete.php" id="deleteEntryForm">
             <div class="modal fade" id="deleteEntryModal" tabindex="-1" aria-labelledby="deleteEntryModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteEntryModalLabel">Delete User?</h5>
+                            <h5 class="modal-title" id="deleteEntryModalLabel">Delete Book?</h5>
                             <!-- Hidden input -->
-                            <input type="hidden" class="ms-5" id="delete_id" name="delete_id" value="">
+                            <input type="text" class="ms-5" id="delete_id" name="delete_id" value="">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <!-- Modal Body -->
                         <div class="modal-body">
-                            <div class="row mb-3">
+                            <div class="row mb-3 location">
                                 <div class="col">
-                                    <label for="edit_email" class="form-label">Email</label>
-                                    <input type="text" class="form-control" id="delete_email" name="edit_email" value="" readonly>
+                                    <label for="delete_title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="delete_title" name="delete_title" value="">
+                                </div>
+                            </div>
+                            <div class="row mb-3 decimal">
+                                <div class="col">
+                                    <label for="delete_ISBN" class="form-label">ISBN</label>
+                                    <input type="text" class="form-control" id="delete_ISBN" name="delete_ISBN" value="">
+                                </div>
+                                <div class="col">
+                                    <label for="delete_genre" class="form-label">Genre</label>
+                                    <input type="text" class="form-control" id="delete_genre" name="delete_genre" value="">
                                 </div>
                             </div>
                             <div class="row mb-3 name">
                                 <div class="col">
-                                    <label for="edit_first" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="delete_first" name="delete_first" value="" readonly>
-                                </div>
-                                <div class="col">
-                                    <label for="edit_last" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="delete_last" name="delete_last" value="" readonly>
+                                    <label for="delete_name" class="form-label">Author Name</label>
+                                    <input type="text" class="form-control" id="delete_name" name="delete_name" value="">
                                 </div>
                             </div>
                         </div>
@@ -354,7 +288,7 @@
 <!-- Footer -->
 <?php include_once('../../modules/scripts.php');?>
 <script src="./js/script.js"></script>
-<script src="./js/user_script.js"></script>
+<script src="./js/book_script.js"></script>
 <script>
     function resetModal() {
         $('#enter_email').val('');
@@ -375,27 +309,6 @@
         // Reset modal fields when modal is opened
         $('#addEntryModal').on('show.bs.modal', function () {
             resetModal(); 
-        });
-
-        // Function to check if a valid selection is made in the edit_type dropdown
-        function checkEditTypeSelection() {
-            var selectedValue = $('#edit_type').val();
-            var confirmBtn = $('#confirmEditBtn');
-            
-            // If no valid selection is made, disable the confirm button
-            if (!selectedValue) {
-                confirmBtn.prop('disabled', true);
-            } else {
-                confirmBtn.prop('disabled', false);
-            }
-        }
-
-        // Call the function initially to disable/enable confirm button based on current selection
-        checkEditTypeSelection();
-
-        // Check selection whenever the user changes the account type
-        $('#edit_type').on('change', function() {
-            checkEditTypeSelection();
         });
 
     });
