@@ -13,17 +13,20 @@ A WebDev2 preliminary requirement project using PHP and mySQL database.
         - [ ] User .htaccess
 
 - [ ] CRUD Management Pages for Admin
-    - [ ] User Management
+    - [x] User Management
+        - [ ] CRUD
     - [ ] Section Management
+        - [ ] CRUD
     - [ ] Course Management
+        - [ ] CRUD
     - [ ] Department Management
+        - [ ] CRUD
 
-- [ ] User Home Page
-- [ ] User Profile Page
-- [ ] Announcement Page
+- [ ] User Home Page (Announcement Page)
     - [ ] Allow Admin and Professor to Create Announcement
-    - [ ] Prevent Student from Creating Announcement
-    
+    - [ ] Only Allow Student to View Announcement
+
+- [ ] User Profile Page   
 - [ ] Publish through Hostinger
 
 ### DONE
