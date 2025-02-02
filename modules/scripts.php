@@ -4,3 +4,6 @@
 
 <!-- Modules -->
 <script src="<?php echo BASE_URL?>/modules/DataTables/datatables.min.js"></script>
+<script src="<?php echo BASE_URL?>/modules/multiselect/js/jquery.multi-select.js"></script>
+<script src="<?php echo BASE_URL?>/modules/select2/js/select2.full.min.js"></script>
+<script src="<?php echo BASE_URL?>/modules/select2/js/select2.min.js"></script>
