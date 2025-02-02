@@ -15,16 +15,16 @@ A WebDev2 preliminary requirement project using PHP and mySQL database.
 - [ ] CRUD Management Pages for Admin
     - [x] User Management
         - [ ] CRUD
-    - [ ] Section Management
+    - [ ] Books Management
         - [ ] CRUD
-    - [ ] Course Management
+    - [ ] Genre Management
         - [ ] CRUD
-    - [ ] Department Management
+    - [ ] Borrow Table
         - [ ] CRUD
 
-- [ ] User Home Page (Announcement Page)
-    - [ ] Allow Admin and Professor to Create Announcement
-    - [ ] Only Allow Student to View Announcement
+- [ ] Search Page
+    -[ ] Allow Users to Search for Books
+    -[ ] Allow Users to Borrow Books
 
 - [ ] User Profile Page   
 - [ ] Publish through Hostinger
